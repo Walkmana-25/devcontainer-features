@@ -1,6 +1,6 @@
 {
     "id": "claude-with-config",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "name": "Claude Code with Config",
     "description": "Configures Claude Code with host-side configuration for seamless authentication. Depends on the official Claude Code Feature.",
     "documentationURL": "https://github.com/Walkmana-25/devcontainer-features/tree/main/src/claude-with-config",
@@ -15,5 +15,5 @@
             "type": "bind"
         }
     ],
-    "postCreateCommand": "if [ ! -e \"~/.claude\" ]; then ln -s /claude_config \"~/.claude\"; fi"
+    "postCreateCommand": "if [ ! -e \"$HOME/.claude\" ]; then ln -s /claude_config \"$HOME/.claude\"; fi"
 }
