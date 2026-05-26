@@ -5,7 +5,7 @@ This Devcontainer Feature provides [Claude Code](https://github.com/anthropics/c
 ## Features
 
 - **Official Claude Code Support**: Leverages the [official Claude Code Feature](https://github.com/anthropics/devcontainer-features) for installation.
-- **Config Persistence**: Mounts `${localEnv:HOME}/.claude` from your host to the container user's home directory. This allows you to use your existing authentication and settings without re-authenticating inside each container.
+- **Config Persistence**: Mounts `${localEnv:HOME}/.claude` from your host to `/claude_config` in the container, and creates a symbolic link at `${_REMOTE_USER_HOME}/.claude`. This allows you to use your existing authentication and settings without re-authenticating inside each container.
 
 ## Requirements
 
@@ -17,10 +17,10 @@ Add the following to your `devcontainer.json`:
 
 ```json
 "features": {
-    "ghcr.io/your-username/your-repo/claude-with-config:1": {}
+    "ghcr.io/walkmana-25/devcontainer-features/claude-with-config:1": {}
 }
 ```
 
 ## Note on Mounts
 
-The feature binds `${localEnv:HOME}/.claude` to `${_REMOTE_USER_HOME}/.claude`.
+The feature binds `${localEnv:HOME}/.claude` to `/claude_config` and creates a symbolic link to `${_REMOTE_USER_HOME}/.claude` if it doesn't already exist.
