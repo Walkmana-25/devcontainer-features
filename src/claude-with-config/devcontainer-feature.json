@@ -1,0 +1,21 @@
+{
+    "id": "claude-with-config",
+    "version": "1.0.0",
+    "name": "Claude Code with Config",
+    "description": "Installs Claude Code and mounts host-side configuration for seamless authentication.",
+    "documentationURL": "https://github.com/your-repo/tree/main/src/claude-with-config",
+    "options": {},
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}/.claude",
+            "target": "/home/${_REMOTE_USER}/.claude",
+            "type": "bind"
+        }
+    ],
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/node"
+    ]
+}

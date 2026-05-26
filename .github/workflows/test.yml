@@ -1,0 +1,33 @@
+name: "Test Features"
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Install ShellCheck"
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: "Lint install.sh"
+        run: shellcheck src/claude-with-config/install.sh
+
+      - name: "Verify JSON syntax"
+        run: python3 -m json.tool src/claude-with-config/devcontainer-feature.json
+
+      - name: "Test Feature"
+        uses: devcontainers/action@v1
+        with:
+          validate_only: true # Initially validate schema
+
+      - name: "Run build tests"
+        uses: devcontainers/action@v1
+        with:
+          features: claude-with-config
+          baseImage: mcr.microsoft.com/devcontainers/base:ubuntu
+          run_tests: true
