@@ -20,11 +20,6 @@ jobs:
       - name: "Verify JSON syntax"
         run: python3 -m json.tool src/claude-with-config/devcontainer-feature.json
 
-      - name: "Test Feature"
-        uses: devcontainers/action@v1
-        with:
-          validate_only: true # Initially validate schema
-
       - name: "Run build tests"
         uses: devcontainers/action@v1
         with:

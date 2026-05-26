@@ -1,16 +1,15 @@
 # Claude Code with Config
 
-This Devcontainer Feature installs [Claude Code](https://github.com/anthropics/claude-code) and automatically mounts your host-side configuration directory into the container.
+This Devcontainer Feature provides [Claude Code](https://github.com/anthropics/claude-code) and automatically mounts your host-side configuration directory into the container.
 
 ## Features
 
-- **Automatic Installation**: Installs the `@anthropic-ai/claude-code` package globally using npm.
+- **Official Claude Code Support**: Leverages the [official Claude Code Feature](https://github.com/anthropics/devcontainer-features) for installation.
 - **Config Persistence**: Mounts `${localEnv:HOME}/.claude` from your host to the container user's home directory. This allows you to use your existing authentication and settings without re-authenticating inside each container.
 
 ## Requirements
 
 - **Host-side Authentication**: You should be authenticated with Claude Code on your host machine before using this feature. Ensure `${HOME}/.claude` exists on your host.
-- **Node.js**: This feature depends on Node.js. It automatically includes the official Node.js Devcontainer Feature if not already present.
 
 ## Usage
 
@@ -24,4 +23,4 @@ Add the following to your `devcontainer.json`:
 
 ## Note on Mounts
 
-The feature binds `${localEnv:HOME}/.claude` to `/home/${_REMOTE_USER}/.claude`. If you are using a non-standard home directory or a different remote user, ensure the paths are compatible.
+The feature binds `${localEnv:HOME}/.claude` to `${_REMOTE_USER_HOME}/.claude`.

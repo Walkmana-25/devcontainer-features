@@ -2,20 +2,17 @@
     "id": "claude-with-config",
     "version": "1.0.0",
     "name": "Claude Code with Config",
-    "description": "Installs Claude Code and mounts host-side configuration for seamless authentication.",
-    "documentationURL": "https://github.com/your-repo/tree/main/src/claude-with-config",
+    "description": "Configures Claude Code with host-side configuration for seamless authentication. Depends on the official Claude Code Feature.",
+    "documentationURL": "https://github.com/anthropics/devcontainer-features/tree/main/src/claude-code",
     "options": {},
     "dependsOn": {
-        "ghcr.io/devcontainers/features/node:1": {}
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
     },
     "mounts": [
         {
             "source": "${localEnv:HOME}/.claude",
-            "target": "/home/${_REMOTE_USER}/.claude",
+            "target": "${_REMOTE_USER_HOME}/.claude",
             "type": "bind"
         }
-    ],
-    "installsAfter": [
-        "ghcr.io/devcontainers/features/node"
     ]
 }
