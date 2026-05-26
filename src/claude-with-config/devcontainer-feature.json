@@ -15,5 +15,5 @@
             "type": "bind"
         }
     ],
-    "postCreateCommand": "if [ ! -e \"${_REMOTE_USER_HOME}/.claude\" ]; then ln -s /claude_config \"${_REMOTE_USER_HOME}/.claude\"; fi"
+    "postCreateCommand": "if [ ! -e \"~/.claude\" ]; then ln -s /claude_config \"~/.claude\"; fi"
 }
