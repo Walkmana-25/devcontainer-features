@@ -18,11 +18,34 @@ Add the following to your `devcontainer.json`:
 
 ```json
 "features": {
-    "ghcr.io/yutailang0119/devcontainer-features/claude-with-config:1": {}
+    "ghcr.io/walkmana-25/devcontainer-features/claude-with-config:1": {}
 }
 ```
 
-*Note: Replace `yutailang0119` with the appropriate GitHub username if you have forked this repository.*
+### OpenCode with Config (`opencode-with-config`)
+
+This feature provides [OpenCode](https://github.com/sst/opencode) and automatically mounts your host-side configuration directories into the container.
+
+- **Official OpenCode Support**: Leverages the official OpenCode Feature for installation.
+- **Config Persistence**: Mounts the following from your host:
+  - `${localEnv:HOME}/.config/opencode` → `${_REMOTE_USER_HOME}/.config/opencode`
+  - `${localEnv:HOME}/.local/share/opencode` → `${_REMOTE_USER_HOME}/.local/share/opencode`
+- **Seamless Authentication**: Use your existing host-side authentication and settings without re-authenticating.
+
+#### Requirements
+
+- Ensure `${HOME}/.config/opencode` exists on your host (global configuration).
+- Ensure `${HOME}/.local/share/opencode` exists on your host (authentication data).
+
+#### Usage
+
+Add the following to your `devcontainer.json`:
+
+```json
+"features": {
+    "ghcr.io/walkmana-25/devcontainer-features/opencode-with-config:1": {}
+}
+```
 
 ## Development
 
@@ -31,7 +54,11 @@ Add the following to your `devcontainer.json`:
 To test the features locally, you can use the `devcontainer` CLI.
 
 ```bash
+# Test claude-with-config
 devcontainer features test --features claude-with-config --base-image mcr.microsoft.com/devcontainers/base:ubuntu .
+
+# Test opencode-with-config
+devcontainer features test --features opencode-with-config --base-image mcr.microsoft.com/devcontainers/base:ubuntu .
 ```
 
 ### Publishing

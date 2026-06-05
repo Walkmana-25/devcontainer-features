@@ -1,0 +1,17 @@
+{
+    "name": "DevContainer Features Development",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "./src/claude-with-config": {},
+        "./src/opencode-with-config": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-vscode-remote.remote-containers"
+            ]
+        }
+    },
+    "postStartCommand": "echo '✅ DevContainer ready. Both features (claude-with-config, opencode-with-config) are active.' && echo 'Run: claude --version && opencode --version to verify.'"
+}

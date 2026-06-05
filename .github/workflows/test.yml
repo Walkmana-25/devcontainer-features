@@ -14,15 +14,21 @@ jobs:
       - name: "Install ShellCheck"
         run: sudo apt-get update && sudo apt-get install -y shellcheck
 
-      - name: "Lint install.sh"
+      - name: "Lint install.sh (claude-with-config)"
         run: shellcheck src/claude-with-config/install.sh
 
-      - name: "Verify JSON syntax"
+      - name: "Lint install.sh (opencode-with-config)"
+        run: shellcheck src/opencode-with-config/install.sh
+
+      - name: "Verify JSON syntax (claude-with-config)"
         run: python3 -m json.tool src/claude-with-config/devcontainer-feature.json
+
+      - name: "Verify JSON syntax (opencode-with-config)"
+        run: python3 -m json.tool src/opencode-with-config/devcontainer-feature.json
 
       - name: "Run build tests"
         uses: devcontainers/action@v1
         with:
-          features: claude-with-config
+          features: claude-with-config opencode-with-config
           baseImage: mcr.microsoft.com/devcontainers/base:ubuntu
           run_tests: true

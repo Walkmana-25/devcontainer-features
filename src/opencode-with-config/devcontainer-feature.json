@@ -1,0 +1,24 @@
+{
+    "id": "opencode-with-config",
+    "version": "1.0.0",
+    "name": "OpenCode with Config",
+    "description": "Configures OpenCode with host-side configuration for seamless authentication. Depends on the official OpenCode Feature.",
+    "documentationURL": "https://github.com/Walkmana-25/devcontainer-features/tree/main/src/opencode-with-config",
+    "options": {},
+    "dependsOn": {
+        "ghcr.io/dirien/devcontainer-features/opencode:0": {}
+    },
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}/.config/opencode",
+            "target": "/opencode_config",
+            "type": "bind"
+        },
+        {
+            "source": "${localEnv:HOME}/.local/share/opencode",
+            "target": "/opencode_data",
+            "type": "bind"
+        }
+    ],
+    "postCreateCommand": "mkdir -p \"$HOME/.config\" \"$HOME/.local/share\"; if [ ! -e \"$HOME/.config/opencode\" ]; then ln -s /opencode_config \"$HOME/.config/opencode\"; fi; if [ ! -e \"$HOME/.local/share/opencode\" ]; then ln -s /opencode_data \"$HOME/.local/share/opencode\"; fi"
+}
