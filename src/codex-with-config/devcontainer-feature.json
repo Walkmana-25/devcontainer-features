@@ -1,0 +1,35 @@
+{
+    "id": "codex-with-config",
+    "version": "1.0.0",
+    "name": "Codex with Config",
+    "description": "Configures OpenAI Codex CLI with host-side configuration for seamless authentication.",
+    "documentationURL": "https://github.com/Walkmana-25/devcontainer-features/tree/main/src/codex-with-config",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest",
+                "0.161.0"
+            ],
+            "default": "latest",
+            "description": "Version of Codex CLI to install (e.g. 'latest' or a specific release like '0.161.0')."
+        },
+        "installMethod": {
+            "type": "string",
+            "enum": [
+                "standalone",
+                "npm"
+            ],
+            "default": "standalone",
+            "description": "Installation method: 'standalone' (official installer, no Node.js required) or 'npm' (requires Node.js in the base image)."
+        }
+    },
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}/.codex",
+            "target": "/codex_config",
+            "type": "bind"
+        }
+    ],
+    "postCreateCommand": "if [ ! -e \"$HOME/.codex\" ]; then ln -s /codex_config \"$HOME/.codex\"; fi"
+}
