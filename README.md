@@ -52,12 +52,12 @@ Add the following to your `devcontainer.json`:
 This feature provides [OpenAI Codex CLI](https://github.com/openai/codex) and automatically mounts your host-side configuration directory into the container.
 
 - **Codex CLI Installation**: Installs Codex CLI using the official standalone installer (no Node.js dependency) or npm.
-- **Config Persistence**: Mounts `${localEnv:HOME}/.codex` from your host to `${_REMOTE_USER_HOME}/.codex` in the container.
+- **Config Persistence**: Mounts `${localEnv:HOME}/.codex-container` from your host to `${_REMOTE_USER_HOME}/.codex` in the container.
 - **Seamless Authentication**: Use your existing host-side authentication and settings without re-authenticating.
 
 #### Requirements
 
-- Ensure `${HOME}/.codex` exists on your host (configuration and authentication data).
+- Ensure `${HOME}/.codex-container` exists on your host (configuration and authentication data).
 
 #### Usage
 

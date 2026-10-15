@@ -36,4 +36,4 @@ else
     fi
 fi
 
-echo "Host configuration directory (~/.codex) will be mounted via devcontainer-feature.json mounts property."
+echo "Host configuration directory (~/.codex-container) will be mounted via devcontainer-feature.json mounts property."

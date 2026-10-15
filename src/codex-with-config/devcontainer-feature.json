@@ -26,7 +26,7 @@
     },
     "mounts": [
         {
-            "source": "${localEnv:HOME}/.codex",
+            "source": "${localEnv:HOME}/.codex-container",
             "target": "/codex_config",
             "type": "bind"
         }

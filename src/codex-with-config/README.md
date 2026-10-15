@@ -5,12 +5,12 @@ This Devcontainer Feature provides [OpenAI Codex CLI](https://github.com/openai/
 ## Features
 
 - **Codex CLI Installation**: Installs Codex CLI using the official standalone installer (no Node.js dependency) or npm.
-- **Config Persistence**: Mounts `${localEnv:HOME}/.codex` from your host to `/codex_config` in the container, and creates a symbolic link at `${_REMOTE_USER_HOME}/.codex`. This allows you to use your existing authentication, settings, and session history without re-authenticating inside each container.
+- **Config Persistence**: Mounts `${localEnv:HOME}/.codex-container` from your host to `/codex_config` in the container, and creates a symbolic link at `${_REMOTE_USER_HOME}/.codex`. This allows you to use your existing authentication, settings, and session history without re-authenticating inside each container.
 - **Version Pinning**: Optionally pin a specific Codex CLI release.
 
 ## Requirements
 
-- **Host-side Authentication**: You should be authenticated with Codex CLI on your host machine before using this feature. Ensure `${HOME}/.codex` exists on your host.
+- **Host-side Authentication**: You should be authenticated with Codex CLI on your host machine before using this feature. Ensure `${HOME}/.codex-container` exists on your host.
 
 ## Usage
 
@@ -41,7 +41,7 @@ Example with options:
 
 ## Note on Mounts
 
-The feature binds `${localEnv:HOME}/.codex` to `/codex_config` and creates a symbolic link to `${_REMOTE_USER_HOME}/.codex` if it doesn't already exist.
+The feature binds `${localEnv:HOME}/.codex-container` to `/codex_config` and creates a symbolic link to `${_REMOTE_USER_HOME}/.codex` if it doesn't already exist.
 
 ## Authentication
 
