@@ -1,6 +1,6 @@
 {
     "id": "codex-with-config",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "Codex with Config",
     "description": "Configures OpenAI Codex CLI with host-side configuration for seamless authentication.",
     "documentationURL": "https://github.com/Walkmana-25/devcontainer-features/tree/main/src/codex-with-config",

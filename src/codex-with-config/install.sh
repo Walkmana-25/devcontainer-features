@@ -24,15 +24,21 @@ else
 
     curl -fsSL https://chatgpt.com/codex/install.sh | sh
 
-    # Locate the installed binary and expose it on the global PATH.
-    # Copy (rather than symlink) so the binary remains self-contained.
+    # Locate the packaged binary and expose it on the global PATH.
+    # The symlink must resolve into the package layout: Codex validates that
+    # the executable lives in a bin/ directory next to codex-package.json.
     BIN_PATH="$(find /usr/local/lib/codex -type f -name codex 2>/dev/null | head -1)"
     if [ -n "$BIN_PATH" ]; then
-        cp "$BIN_PATH" /usr/local/bin/codex
-        chmod +x /usr/local/bin/codex
-        echo "Codex CLI installed at /usr/local/bin/codex"
+        PACKAGE_ROOT="$(dirname "$(dirname "$BIN_PATH")")"
+        if [ ! -f "$PACKAGE_ROOT/codex-package.json" ]; then
+            echo "Error: incomplete Codex package at $PACKAGE_ROOT" >&2
+            exit 1
+        fi
+        ln -sf "$BIN_PATH" /usr/local/bin/codex
+        echo "Codex CLI linked at /usr/local/bin/codex"
     else
-        echo "Warning: could not locate the installed binary."
+        echo "Error: could not locate the installed binary." >&2
+        exit 1
     fi
 fi
 
