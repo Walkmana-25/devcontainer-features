@@ -1,6 +1,6 @@
 {
     "id": "codex-with-config",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "name": "Codex with Config",
     "description": "Configures OpenAI Codex CLI with host-side configuration for seamless authentication.",
     "documentationURL": "https://github.com/Walkmana-25/devcontainer-features/tree/main/src/codex-with-config",
@@ -31,5 +31,5 @@
             "type": "bind"
         }
     ],
-    "postCreateCommand": "if [ ! -e \"$HOME/.codex\" ]; then ln -s /codex_config \"$HOME/.codex\"; fi"
+    "postCreateCommand": "if [ -d /codex_config ]; then sudo chgrp -R \"$(id -g)\" /codex_config && sudo chmod -R g+rwX /codex_config && sudo find /codex_config -type d -exec chmod g+s {} +; fi; if [ ! -e \"$HOME/.codex\" ]; then ln -s /codex_config \"$HOME/.codex\"; fi"
 }

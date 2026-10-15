@@ -43,6 +43,12 @@ Example with options:
 
 The feature binds `${localEnv:HOME}/.codex-container` to `/codex_config` and creates a symbolic link to `${_REMOTE_USER_HOME}/.codex` if it doesn't already exist.
 
+At post-create, the feature also grants the container user's group read/write
+access to the mounted configuration and sets the setgid bit on directories, so
+files created by the container user remain group-writable after rebuilds. This
+avoids SQLite "database is locked" / permission errors caused by UID mismatches
+between the host (e.g. macOS uid 501) and the container user (uid 1000).
+
 ## Authentication
 
 - **ChatGPT account**: Run `codex login` inside the container after creation. The auth token is stored in `~/.codex/auth.json` (persisted to the host mount).
