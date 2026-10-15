@@ -49,6 +49,15 @@ files created by the container user remain group-writable after rebuilds. This
 avoids SQLite "database is locked" / permission errors caused by UID mismatches
 between the host (e.g. macOS uid 501) and the container user (uid 1000).
 
+An alias is also added to `~/.bashrc` and `~/.zshrc`:
+
+```bash
+alias codex='codex -s danger-full-access --search'
+```
+
+This keeps the background daemon enabled while disabling sandbox restrictions
+and enabling web search. The alias is only added if it does not already exist.
+
 ## Authentication
 
 - **ChatGPT account**: Run `codex login` inside the container after creation. The auth token is stored in `~/.codex/auth.json` (persisted to the host mount).
